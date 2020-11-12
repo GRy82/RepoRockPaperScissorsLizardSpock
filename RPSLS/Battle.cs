@@ -66,7 +66,7 @@ namespace RPSLS
                 var comp = (Computer)players[1];
                 Gestures playerGesture = human.ChooseGesture();
                 Gestures computerGesture = comp.RandomizeGesture();
-                CompareGestures();
+                Player roundWinningPlayer = CompareGestures(playerGesture, computerGesture);
             } while (players[0].wins < winningNumber && players[1].wins < winningNumber);
 
         }
@@ -79,7 +79,7 @@ namespace RPSLS
                 Gestures playerGesture = human.ChooseGesture();
                 var human2 = (Human)players[0];
                 Gestures player2Gesture = human2.ChooseGesture();
-                CompareGestures(playerGesture, player2Gesture);
+                Player roundWinningPlayer = CompareGestures(playerGesture, player2Gesture);
             } while (players[0].wins < winningNumber && players[1].wins < winningNumber);
         }
 
