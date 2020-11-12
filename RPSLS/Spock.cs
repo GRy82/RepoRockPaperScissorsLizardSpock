@@ -6,7 +6,14 @@ using System.Threading.Tasks;
 
 namespace RPSLS
 {
-    class Spock
+    public class Spock : Gestures
     {
+        public Spock()
+        {
+            weaknesses.Add("Paper");
+            weaknesses.Add("Lizard");
+            strengths.Add("Scissors");
+            strengths.Add("Rock");
+        }
     }
 }
