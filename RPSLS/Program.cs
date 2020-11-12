@@ -14,21 +14,20 @@ namespace RPSLS
             bool runProgram = true;
             while (runProgram == true) {
                 List<string> gameModeOptions = new List<string> { "Single Player", "Multi Player" };
-                int optionSelected = MenuServer(gameModeOptions, false);
+                int optionSelected = MenuServer(gameModeOptions, false); //Choose single or multiplayer
                 int rounds = DetermineRounds();
-                
-                
-
                 bool multiPlayer = false;
                 if (optionSelected == 2)
                 {
                     multiPlayer = true;
                 }
                 LoadObjects(multiPlayer);
-
+                if 
                 
             }
         }
+
+
 
 
         public static int MenuServer(List<string> options, bool exit)
@@ -78,6 +77,13 @@ namespace RPSLS
                 player2 = new Computer();
             }
             List<Player> players = new List<Player> { player1, player2 };
+
+            Gestures rock = new Rock();
+            Gestures paper = new Paper();
+            Gestures scissors = new Scissors();
+            Gestures lizard = new Lizard();
+            Gestures spock = new Spock();
+            List<Gestures> gestures = new List<Gestures> { rock, paper, scissors, lizard, spock };
         }
 
     }
