@@ -34,6 +34,21 @@ namespace RPSLS
             return optionSelected;
         }
 
+        public static void LoadObjects(bool multiPlayer)
+        {
+            Player player1 = new Human();
+            Player player2;
+            if (multiPlayer == true) {
+                player2 = new Human();
+            }
+            else {
+                player2 = new Computer();
+            }
+            List<Player> players = new List<Player> { player1, player2 };
+
+
+        }
+
     }
 }
 
