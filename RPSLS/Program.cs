@@ -27,9 +27,6 @@ namespace RPSLS
             }
         }
 
-
-
-
         public static int MenuServer(List<string> options, bool exit)
         {
             ConsoleOptionsInterface optionsMenu = new ConsoleOptionsInterface(options, exit);
@@ -77,13 +74,16 @@ namespace RPSLS
                 player2 = new Computer();
             }
             List<Player> players = new List<Player> { player1, player2 };
-
+            //Instantiate each gesture
             Gestures rock = new Rock();
             Gestures paper = new Paper();
             Gestures scissors = new Scissors();
             Gestures lizard = new Lizard();
             Gestures spock = new Spock();
+            //store it into a list.
             List<Gestures> gestures = new List<Gestures> { rock, paper, scissors, lizard, spock };
+
+            Battle battle = new Battle(players, gestures);
         }
 
     }

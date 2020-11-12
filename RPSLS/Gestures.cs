@@ -6,7 +6,9 @@ using System.Threading.Tasks;
 
 namespace RPSLS
 {
-    class Gestures
+    abstract public class Gestures
     {
+        public List<string> weaknesses;
+        public List<string> strengths;
     }
 }

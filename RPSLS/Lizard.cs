@@ -6,7 +6,14 @@ using System.Threading.Tasks;
 
 namespace RPSLS
 {
-    class Lizard
+    public class Lizard : Gestures
     {
+        public Lizard()
+        {
+            this.weaknesses.Add("Rock");
+            this.weaknesses.Add("Scissors");
+            this.strengths.Add("Paper");
+            this.strengths.Add("Spock");
+        }
     }
 }

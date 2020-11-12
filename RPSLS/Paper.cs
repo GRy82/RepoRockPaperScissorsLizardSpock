@@ -6,14 +6,14 @@ using System.Threading.Tasks;
 
 namespace RPSLS
 {
-    class Paper : Gestures
+    public class Paper : Gestures
     {
         public Paper()
         {
-            weaknesses.Add("Lizard");
-            weaknesses.Add("Scissors");
-            strengths.Add("Spock");
-            strengths.Add("Rock");
+            this.weaknesses.Add("Lizard");
+            this.weaknesses.Add("Scissors");
+            this.strengths.Add("Spock");
+            this.strengths.Add("Rock");
         }
     }
 }
