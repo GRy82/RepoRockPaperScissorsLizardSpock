@@ -10,10 +10,10 @@ namespace RPSLS
     {
         public Spock()
         {
-            weaknesses.Add("Paper");
-            weaknesses.Add("Lizard");
-            strengths.Add("Scissors");
-            strengths.Add("Rock");
+            this.weaknesses.Add("Paper");
+            this.weaknesses.Add("Lizard");
+            this.strengths.Add("Scissors");
+            this.strengths.Add("Rock");
         }
     }
 }
