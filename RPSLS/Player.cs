@@ -10,6 +10,7 @@ namespace RPSLS
     {
         public int wins;
         public string type;
+        public string name;
         public Gestures currentGesture;
         public List<Gestures> gestures;
     }

@@ -11,7 +11,6 @@ namespace RPSLS
 
     public class Human : Player
     {
-        public string name;
         ConsoleOptionsInterface gestureChoices;
         List<string> gestureNames = new List<string> { };
         public Human(List<Gestures> gestures, string name)

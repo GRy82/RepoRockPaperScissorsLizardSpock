@@ -13,6 +13,7 @@ namespace RPSLS
             this.wins = 0;
             this.type = "Computer";
             this.gestures = gestures;
+            this.name = "Computer";
         }
 
         public Gestures RandomizeGesture()

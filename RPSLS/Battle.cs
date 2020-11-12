@@ -78,26 +78,24 @@ namespace RPSLS
                 var human = (Human)players[0];
                 Gestures playerGesture = human.ChooseGesture();
                 var human2 = (Human)players[0];
-                Gestures playerGesture2 = human2.ChooseGesture();
-                CompareGestures();
+                Gestures player2Gesture = human2.ChooseGesture();
+                CompareGestures(playerGesture, player2Gesture);
             } while (players[0].wins < winningNumber && players[1].wins < winningNumber);
         }
 
-     
-            if (multi) {
-                string temp = currentTurn;
-                currentTurn = otherTurn;
-                otherTurn = temp;}
-       
-        
-
-        public void RoundWinnerDisplay()
+        public Player CompareGestures(Gestures gesture1, Gestures gesture2)
         {
+            string gesture2Name = gesture2.name;
+            for (int i = 0; i < 2; i++)
+            {
+                if (gesture2.name == gesture1.weaknesses[i])
+                {
+                    return players[1];
+                }
+            }
+            return players[0];
+        }
 
-        }
-        public void DetermineWinner()
-        {
- 
-        }
-    }
+
+    }   
 }
