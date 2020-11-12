@@ -16,5 +16,32 @@ namespace RPSLS
             this.gestures = gestures;
             this.players = players;
         }
+
+        public void Run(int rounds)
+        {
+            int humanCount = 0;
+            for(int i = 0; i <= 1; i++)
+            {
+                if (players[i].type == "Human") {
+                    humanCount++;
+                }
+            }
+            if (humanCount == 2) {
+                RunSinglePlayer(rounds);
+            }
+            else {
+                RunMultiPlayer(rounds);
+            }
+        }
+
+        public void RunSinglePlayer(int rounds)
+        {
+
+        }
+
+        public void RunMultiPlayer(int rounds)
+        {
+
+        }
     }
 }
