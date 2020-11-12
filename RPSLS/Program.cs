@@ -63,17 +63,8 @@ namespace RPSLS
             return true;
         }
 
-        public static Battle LoadObjects(bool multiPlayer, int rounds)
+        public static Battle LoadObjects(bool multiPlayer, int rounds, bool multi)
         {
-            Player player1 = new Human();
-            Player player2;
-            if (multiPlayer == true) {
-                player2 = new Human();
-            }
-            else {
-                player2 = new Computer();
-            }
-            List<Player> players = new List<Player> { player1, player2 };
             //Instantiate each gesture
             Gestures rock = new Rock();
             Gestures paper = new Paper();
@@ -82,8 +73,21 @@ namespace RPSLS
             Gestures spock = new Spock();
             //store it into a list.
             List<Gestures> gestures = new List<Gestures> { rock, paper, scissors, lizard, spock };
+            
+            //Instantiate players
+            Player player1 = new Human(gestures);
+            Player player2;
+            if (multiPlayer == true)
+            {
+                player2 = new Human(gestures);
+            }
+            else
+            {
+                player2 = new Computer(gestures);
+            }
+            List<Player> players = new List<Player> { player1, player2 };
 
-            Battle battle = new Battle(players, gestures, rounds);
+            Battle battle = new Battle(players, gestures, rounds, multi);
             return battle;
         }
 

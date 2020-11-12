@@ -14,6 +14,7 @@ namespace RPSLS
             this.weaknesses.Add("Lizard");
             this.strengths.Add("Scissors");
             this.strengths.Add("Rock");
+            this.name = "Spock";
         }
     }
 }

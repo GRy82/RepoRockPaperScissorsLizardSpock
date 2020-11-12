@@ -14,13 +14,33 @@ namespace RPSLS
         List<Gestures> gestures;
         int rounds;
         int winningNumber;
+        int currentRound;
+        string currentTurn;
+        bool multi;
+        string otherTurn;
+        ConsoleOptionsInterface gestureChoice;
+        List<string> gestureNames = new List<string> { };
 
-        public Battle(List<Player> players, List<Gestures> gestures, int rounds)
+        public Battle(List<Player> players, List<Gestures> gestures, int rounds, bool multi)
         {
             this.gestures = gestures;
             this.players = players;
             this.rounds = rounds;
             this.winningNumber = Convert.ToInt32(rounds / 2) + 1;
+            this.multi = multi;
+            this.currentRound = 1;
+            this.currentTurn = "Player1";
+            if (multi) {
+                this.otherTurn = "Player2";
+            }
+            else {
+                this.otherTurn = "Computer";
+            }
+            foreach (Gestures gesture in gestures)
+            {
+                gestureNames.Add(gesture.name);
+            }
+            gestureChoice = new ConsoleOptionsInterface(gestureNames, false);
         }
 
         public void Run()
@@ -44,24 +64,39 @@ namespace RPSLS
         {
             do
             {
-                
+                UserPrompt();
             } while (players[0].wins < winningNumber && players[1].wins < winningNumber);
 
         }
 
         public void RunMultiPlayer()
         {
-            int winningNumber = Convert.ToInt32(rounds / 2) + 1;
             do
             {
 
             } while (players[0].wins < winningNumber && players[1].wins < winningNumber);
         }
 
-        public void Display()
+        public void UserPrompt()
         {
-            Console.WriteLine(this is);
-            Console.WriteLine("Press 'enter');
+            Console.WriteLine("This is round " + currentRound + ". Select your gesture choice " + currentTurn);
+            int choice = gestureChoice.Launch();
+            if (multi) {
+                string temp = currentTurn;
+                currentTurn = otherTurn;
+                otherTurn = temp;
+            }
+           
+        }
+        
+
+        public void RoundWinnerDisplay()
+        {
+
+        }
+        public void DetermineWinner()
+        {
+ 
         }
     }
 }

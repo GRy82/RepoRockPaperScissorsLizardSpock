@@ -10,5 +10,6 @@ namespace RPSLS
     {
         public List<string> weaknesses;
         public List<string> strengths;
+        public string name;
     }
 }
