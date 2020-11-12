@@ -63,7 +63,7 @@ namespace RPSLS
             return true;
         }
 
-        public static Battle LoadObjects(bool multiPlayer, int rounds, bool multi)
+        public static Battle LoadObjects(bool multiPlayer, int rounds)
         {
             //Instantiate each gesture
             Gestures rock = new Rock();
@@ -87,7 +87,7 @@ namespace RPSLS
             }
             List<Player> players = new List<Player> { player1, player2 };
 
-            Battle battle = new Battle(players, gestures, rounds, multi);
+            Battle battle = new Battle(players, gestures, rounds, multiPlayer);
             return battle;
         }
 

@@ -10,6 +10,8 @@ namespace RPSLS
     {
         public Rock()
         {
+            this.weaknesses = new List<string> { };
+            this.strengths = new List<string> { };
             this.weaknesses.Add("Spock");
             this.weaknesses.Add("Paper");
             this.strengths.Add("Scissors");

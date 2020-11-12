@@ -10,10 +10,13 @@ namespace RPSLS
     {
         public Lizard()
         {
+            this.weaknesses = new List<string> { };
+            this.strengths = new List<string> { };
             this.weaknesses.Add("Rock");
             this.weaknesses.Add("Scissors");
             this.strengths.Add("Paper");
             this.strengths.Add("Spock");
+            this.name = "Lizard";
         }
     }
 }

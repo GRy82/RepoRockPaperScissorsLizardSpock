@@ -67,6 +67,7 @@ namespace RPSLS
                 Gestures playerGesture = human.ChooseGesture();
                 Gestures computerGesture = comp.RandomizeGesture();
                 Player roundWinningPlayer = CompareGestures(playerGesture, computerGesture);
+                RoundWinner(roundWinningPlayer);
             } while (players[0].wins < winningNumber && players[1].wins < winningNumber);
 
         }
@@ -80,6 +81,7 @@ namespace RPSLS
                 var human2 = (Human)players[0];
                 Gestures player2Gesture = human2.ChooseGesture();
                 Player roundWinningPlayer = CompareGestures(playerGesture, player2Gesture);
+                RoundWinner(roundWinningPlayer);
             } while (players[0].wins < winningNumber && players[1].wins < winningNumber);
         }
 
@@ -96,6 +98,17 @@ namespace RPSLS
             return players[0];
         }
 
+        public void DisplayScore()
+        {
+            Console.WriteLine("It is round " + currentRound + " of " + rounds + " rounds." );
+            Console.WriteLine(players[0].name + " has " + players[0].wins + "points.  " + players[1].name + " has " + players[1].wins + "points.");
+        }
 
+        public void RoundWinner(Player roundWinningPlayer)
+        {
+
+            Console.WriteLine(roundWinningPlayer.name + " wins round " + currentRound);
+            roundWinningPlayer.wins++;
+        }
     }   
 }
