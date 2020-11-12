@@ -60,7 +60,8 @@ namespace RPSLS
                     return false;
                 }
             }
-            if (Convert.ToInt32(rounds) % 2 == 0)
+            int intRounds = Convert.ToInt32(rounds);
+            if (intRounds % 2 == 0 || intRounds < 3)
             {
                 return false;
             }
