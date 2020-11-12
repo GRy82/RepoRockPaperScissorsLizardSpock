@@ -12,12 +12,15 @@ namespace RPSLS
         static void Main(string[] args)
         {
             bool runProgram = true;
-            
             while (runProgram == true) {
                 List<string> gameModeOptions = new List<string> { "Single Player", "Multi Player" };
                 int optionSelected = MenuServer(gameModeOptions, false);
-               
-                
+                bool multiPlayer = false;
+                if (optionSelected == 2)
+                {
+                    multiPlayer = true;
+                }
+                LoadObjects(multiPlayer);
 
                 
             }
