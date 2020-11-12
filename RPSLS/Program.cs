@@ -75,11 +75,11 @@ namespace RPSLS
             List<Gestures> gestures = new List<Gestures> { rock, paper, scissors, lizard, spock };
             
             //Instantiate players
-            Player player1 = new Human(gestures);
+            Player player1 = new Human(gestures, "Player1");
             Player player2;
             if (multiPlayer == true)
             {
-                player2 = new Human(gestures);
+                player2 = new Human(gestures, "Player2");
             }
             else
             {

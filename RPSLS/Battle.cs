@@ -18,7 +18,6 @@ namespace RPSLS
         string currentTurn;
         bool multi;
         string otherTurn;
-        ConsoleOptionsInterface gestureChoice;
         List<string> gestureNames = new List<string> { };
 
         public Battle(List<Player> players, List<Gestures> gestures, int rounds, bool multi)
@@ -40,13 +39,12 @@ namespace RPSLS
             {
                 gestureNames.Add(gesture.name);
             }
-            gestureChoice = new ConsoleOptionsInterface(gestureNames, false);
         }
 
         public void Run()
         {
             int humanCount = 0;
-            for(int i = 0; i <= 1; i++)
+            for (int i = 0; i <= 1; i++)
             {
                 if (players[i].type == "Human") {
                     humanCount++;
@@ -64,7 +62,11 @@ namespace RPSLS
         {
             do
             {
-                UserPrompt();
+                var human = (Human)players[0];
+                var comp = (Computer)players[1];
+                Gestures playerGesture = human.ChooseGesture();
+                Gestures computerGesture = comp.RandomizeGesture();
+                CompareGestures();
             } while (players[0].wins < winningNumber && players[1].wins < winningNumber);
 
         }
@@ -73,21 +75,20 @@ namespace RPSLS
         {
             do
             {
-
+                var human = (Human)players[0];
+                Gestures playerGesture = human.ChooseGesture();
+                var human2 = (Human)players[0];
+                Gestures playerGesture2 = human2.ChooseGesture();
+                CompareGestures();
             } while (players[0].wins < winningNumber && players[1].wins < winningNumber);
         }
 
-        public void UserPrompt()
-        {
-            Console.WriteLine("This is round " + currentRound + ". Select your gesture choice " + currentTurn);
-            int choice = gestureChoice.Launch();
+     
             if (multi) {
                 string temp = currentTurn;
                 currentTurn = otherTurn;
-                otherTurn = temp;
-            }
-           
-        }
+                otherTurn = temp;}
+       
         
 
         public void RoundWinnerDisplay()

@@ -14,5 +14,19 @@ namespace RPSLS
             this.type = "Computer";
             this.gestures = gestures;
         }
+
+        public Gestures RandomizeGesture()
+        {
+            Random rand = new Random();
+            int randomInteger = rand.Next(5);
+            foreach(Gestures gesture in gestures)
+            {
+                if (randomInteger == gestures.IndexOf(gesture))
+                {
+                    currentGesture = gesture;
+                }
+            }
+            return currentGesture;
+        }
     }
 }
