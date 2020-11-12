@@ -14,7 +14,11 @@ namespace RPSLS
             bool runProgram = true;
             while (runProgram == true) {
                 List<string> gameModeOptions = new List<string> { "Single Player", "Multi Player" };
-                int optionSelected = MenuServer(gameModeOptions, false); //Choose single or multiplayer
+                int optionSelected = MenuServer(gameModeOptions, true); //Choose single or multiplayer
+                if (optionSelected == 3)
+                {
+                    Environment.Exit(-1);
+                }
                 int rounds = DetermineRounds();
                 bool multiPlayer = false;
                 if (optionSelected == 2)
@@ -39,7 +43,7 @@ namespace RPSLS
             string rounds;
             do
             {
-                Console.Write("Enter the number of rounds you wish to play(must be odd number): ");
+                Console.Write("\nEnter the number of rounds you wish to play(must be odd number): ");
                 rounds = Console.ReadLine();
             } while (ValidateRounds(rounds) == false);
 

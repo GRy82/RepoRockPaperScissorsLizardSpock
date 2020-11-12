@@ -51,10 +51,10 @@ namespace RPSLS
                 }
             }
             if (humanCount == 2) {
-                RunSinglePlayer();
+                RunMultiPlayer();
             }
             else {
-                RunMultiPlayer();
+                RunSinglePlayer();
             }
         }
 
@@ -62,13 +62,20 @@ namespace RPSLS
         {
             do
             {
+                DisplayScore();
                 var human = (Human)players[0];
                 var comp = (Computer)players[1];
                 Gestures playerGesture = human.ChooseGesture();
                 Gestures computerGesture = comp.RandomizeGesture();
-                Player roundWinningPlayer = CompareGestures(playerGesture, computerGesture);
-                RoundWinner(roundWinningPlayer);
+                if (playerGesture == computerGesture) {
+                    Tie();
+                }
+                else {
+                    Player roundWinningPlayer = CompareGestures(playerGesture, computerGesture);
+                    RoundWinner(roundWinningPlayer);
+                }
             } while (players[0].wins < winningNumber && players[1].wins < winningNumber);
+            AnnounceWinner();
 
         }
 
@@ -76,6 +83,7 @@ namespace RPSLS
         {
             do
             {
+                DisplayScore();
                 var human = (Human)players[0];
                 Gestures playerGesture = human.ChooseGesture();
                 var human2 = (Human)players[0];
@@ -83,6 +91,7 @@ namespace RPSLS
                 Player roundWinningPlayer = CompareGestures(playerGesture, player2Gesture);
                 RoundWinner(roundWinningPlayer);
             } while (players[0].wins < winningNumber && players[1].wins < winningNumber);
+            AnnounceWinner();
         }
 
         public Player CompareGestures(Gestures gesture1, Gestures gesture2)
@@ -98,17 +107,43 @@ namespace RPSLS
             return players[0];
         }
 
+        public void AnnounceWinner()
+        {
+            string winner = players[1].name;
+            if (players[0].wins >= winningNumber)
+            {
+                winner = players[0].name;
+            }
+            Console.WriteLine("The winner of Rock-Paper-Scissors-Lizard-Spock is...\n\n      ..." + winner + "!");
+            Continue();
+        }
+      
+        public void Continue()
+        {
+            Console.WriteLine("\nPress 'enter' to continue...");
+            Console.ReadLine();
+        }
         public void DisplayScore()
         {
-            Console.WriteLine("It is round " + currentRound + " of " + rounds + " rounds." );
-            Console.WriteLine(players[0].name + " has " + players[0].wins + "points.  " + players[1].name + " has " + players[1].wins + "points.");
+            Console.WriteLine("\nIt is round " + currentRound + " of " + rounds + " rounds." );
+            Console.WriteLine(players[0].name + " has " + players[0].wins + " points.  " + players[1].name + " has " + players[1].wins + " points.\n");
+        }
+
+        public void Tie()
+        {
+            Console.WriteLine("\n" + players[0].name + " chose " + players[0].currentGesture.name + " and " + players[1].name + " chose " + players[1].currentGesture.name + ".");
+            Console.WriteLine("The result of this round is a tie, and will be repeated");
         }
 
         public void RoundWinner(Player roundWinningPlayer)
         {
-
+            Console.WriteLine("\n" + players[0].name + " chose " + players[0].currentGesture.name + " and " + players[1].name + " chose " + players[1].currentGesture.name + ".");
             Console.WriteLine(roundWinningPlayer.name + " wins round " + currentRound);
             roundWinningPlayer.wins++;
+            rounds++;
+            Console.WriteLine("\nPress enter to continue to next round");
+            Console.ReadLine();
+            Console.Clear();
         }
     }   
 }
