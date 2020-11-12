@@ -29,7 +29,7 @@ namespace RPSLS
 
         public Gestures ChooseGesture()
         {
-            Console.WriteLine("It is " + name + "'s turn to pick a gesture.\n");
+            Console.WriteLine("\nIt is " + name + "'s turn to pick a gesture.");
             int option = gestureChoices.Launch();
             option -= 1;
             foreach(Gestures gesture in gestures)

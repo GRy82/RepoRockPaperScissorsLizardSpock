@@ -15,9 +15,8 @@ namespace RPSLS
         int rounds;
         int winningNumber;
         int currentRound;
-        string currentTurn;
         bool multi;
-        string otherTurn;
+
         List<string> gestureNames = new List<string> { };
 
         public Battle(List<Player> players, List<Gestures> gestures, int rounds, bool multi)
@@ -28,13 +27,6 @@ namespace RPSLS
             this.winningNumber = Convert.ToInt32(rounds / 2) + 1;
             this.multi = multi;
             this.currentRound = 1;
-            this.currentTurn = "Player1";
-            if (multi) {
-                this.otherTurn = "Player2";
-            }
-            else {
-                this.otherTurn = "Computer";
-            }
             foreach (Gestures gesture in gestures)
             {
                 gestureNames.Add(gesture.name);
@@ -43,56 +35,31 @@ namespace RPSLS
 
         public void Run()
         {
-            int humanCount = 0;
-            for (int i = 0; i <= 1; i++)
-            {
-                if (players[i].type == "Human") {
-                    humanCount++;
-                }
-            }
-            if (humanCount == 2) {
-                RunMultiPlayer();
-            }
-            else {
-                RunSinglePlayer();
-            }
-        }
-
-        public void RunSinglePlayer()
-        {
             do
             {
                 DisplayScore();
-                var human = (Human)players[0];
-                var comp = (Computer)players[1];
-                Gestures playerGesture = human.ChooseGesture();
-                Gestures computerGesture = comp.RandomizeGesture();
-                if (playerGesture == computerGesture) {
+                var p1 = (Human)players[0];
+                Gestures gesture1 = p1.ChooseGesture();
+                Gestures gesture2;
+                if (multi == true){  
+                    var p2 = (Human)players[1];
+                    gesture2 = p2.ChooseGesture();
+                }
+                else {
+                    var p2 = (Computer)players[1];
+                    gesture2 = p2.RandomizeGesture();
+                }
+                if (gesture1 == gesture2) {
                     Tie();
                 }
                 else {
-                    Player roundWinningPlayer = CompareGestures(playerGesture, computerGesture);
+                    Player roundWinningPlayer = CompareGestures(gesture1, gesture2);
                     RoundWinner(roundWinningPlayer);
                 }
             } while (players[0].wins < winningNumber && players[1].wins < winningNumber);
             AnnounceWinner();
-
         }
 
-        public void RunMultiPlayer()
-        {
-            do
-            {
-                DisplayScore();
-                var human = (Human)players[0];
-                Gestures playerGesture = human.ChooseGesture();
-                var human2 = (Human)players[0];
-                Gestures player2Gesture = human2.ChooseGesture();
-                Player roundWinningPlayer = CompareGestures(playerGesture, player2Gesture);
-                RoundWinner(roundWinningPlayer);
-            } while (players[0].wins < winningNumber && players[1].wins < winningNumber);
-            AnnounceWinner();
-        }
 
         public Player CompareGestures(Gestures gesture1, Gestures gesture2)
         {
@@ -115,17 +82,20 @@ namespace RPSLS
                 winner = players[0].name;
             }
             Console.WriteLine("The winner of Rock-Paper-Scissors-Lizard-Spock is...\n\n      ..." + winner + "!");
-            Continue();
+            Continue("\nPress 'enter' to continue...", true);
         }
       
-        public void Continue()
+        public void Continue(string prompt, bool clear)
         {
-            Console.WriteLine("\nPress 'enter' to continue...");
+            Console.WriteLine(prompt);
             Console.ReadLine();
+            if (clear == true) {
+                Console.Clear();
+            }
         }
         public void DisplayScore()
         {
-            Console.WriteLine("\nIt is round " + currentRound + " of " + rounds + " rounds." );
+            Console.WriteLine("It is round " + currentRound + " of " + rounds + " rounds." );
             Console.WriteLine(players[0].name + " has " + players[0].wins + " points.  " + players[1].name + " has " + players[1].wins + " points.\n");
         }
 
@@ -133,6 +103,7 @@ namespace RPSLS
         {
             Console.WriteLine("\n" + players[0].name + " chose " + players[0].currentGesture.name + " and " + players[1].name + " chose " + players[1].currentGesture.name + ".");
             Console.WriteLine("The result of this round is a tie, and will be repeated");
+            Continue("\nPress enter to continue to next round", true);
         }
 
         public void RoundWinner(Player roundWinningPlayer)
@@ -141,9 +112,7 @@ namespace RPSLS
             Console.WriteLine(roundWinningPlayer.name + " wins round " + currentRound);
             roundWinningPlayer.wins++;
             rounds++;
-            Console.WriteLine("\nPress enter to continue to next round");
-            Console.ReadLine();
-            Console.Clear();
+            Continue("\nPress enter to continue to next round", true);
         }
     }   
 }
