@@ -21,7 +21,7 @@ namespace RPSLS
                 {
                     multiPlayer = true;
                 }
-                Battle battle = LoadObjects(multiPlayer);
+                Battle battle = LoadObjects(multiPlayer, rounds);
                 battle.Run();
                 
             }
@@ -63,7 +63,7 @@ namespace RPSLS
             return true;
         }
 
-        public static Battle LoadObjects(bool multiPlayer)
+        public static Battle LoadObjects(bool multiPlayer, int rounds)
         {
             Player player1 = new Human();
             Player player2;
@@ -83,7 +83,7 @@ namespace RPSLS
             //store it into a list.
             List<Gestures> gestures = new List<Gestures> { rock, paper, scissors, lizard, spock };
 
-            Battle battle = new Battle(players, gestures);
+            Battle battle = new Battle(players, gestures, rounds);
             return battle;
         }
 
