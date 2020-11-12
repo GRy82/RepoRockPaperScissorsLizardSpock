@@ -15,6 +15,10 @@ namespace RPSLS
             while (runProgram == true) {
                 List<string> gameModeOptions = new List<string> { "Single Player", "Multi Player" };
                 int optionSelected = MenuServer(gameModeOptions, false);
+                int rounds = DetermineRounds();
+                
+                
+
                 bool multiPlayer = false;
                 if (optionSelected == 2)
                 {
@@ -34,6 +38,35 @@ namespace RPSLS
             return optionSelected;
         }
 
+        public static int DetermineRounds()
+        {
+            string rounds;
+            do
+            {
+                Console.Write("Enter the number of rounds you wish to play(must be odd number): ");
+                rounds = Console.ReadLine();
+            } while (ValidateRounds(rounds) == false);
+
+            return Convert.ToInt32(rounds);  
+        }
+
+        public static bool ValidateRounds(string rounds)
+        {
+            foreach (char character in rounds)
+            {
+                int asciiChar = Convert.ToInt32(character);
+                if (asciiChar < 48 || asciiChar > 57)
+                {
+                    return false;
+                }
+            }
+            if (Convert.ToInt32(rounds) % 2 == 0)
+            {
+                return false;
+            }
+            return true;
+        }
+
         public static void LoadObjects(bool multiPlayer)
         {
             Player player1 = new Human();
@@ -45,8 +78,6 @@ namespace RPSLS
                 player2 = new Computer();
             }
             List<Player> players = new List<Player> { player1, player2 };
-
-
         }
 
     }
