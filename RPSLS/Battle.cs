@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Security.Principal;
 using System.Text;
 using System.Threading.Tasks;
 
@@ -36,12 +37,21 @@ namespace RPSLS
 
         public void RunSinglePlayer(int rounds)
         {
+            int winningNumber = Convert.ToInt32(rounds / 2) + 1;
+            do
+            {
+
+            } while (players[0].wins < winningNumber && players[1].wins < winningNumber);
 
         }
 
         public void RunMultiPlayer(int rounds)
         {
+            int winningNumber = Convert.ToInt32(rounds / 2) + 1;
+            do
+            {
 
+            } while (players[0].wins < winningNumber && players[1].wins < winningNumber);
         }
     }
 }
