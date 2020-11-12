@@ -81,7 +81,7 @@ namespace RPSLS
             {
                 winner = players[0].name;
             }
-            Console.WriteLine("The winner of Rock-Paper-Scissors-Lizard-Spock is...\n\n      ..." + winner + "!");
+            Console.WriteLine("\n\nThe winner of Rock-Paper-Scissors-Lizard-Spock is...\n\n      ..." + winner + "!");
             Continue("\nPress 'enter' to continue...", true);
         }
       
@@ -95,8 +95,8 @@ namespace RPSLS
         }
         public void DisplayScore()
         {
-            Console.WriteLine("It is round " + currentRound + " of " + rounds + " rounds." );
-            Console.WriteLine(players[0].name + " has " + players[0].wins + " points.  " + players[1].name + " has " + players[1].wins + " points.\n");
+            Console.WriteLine("\nIt is round " + currentRound + " of " + rounds + " rounds." );
+            Console.WriteLine(players[0].name + " has " + players[0].wins + " points.  " + players[1].name + " has " + players[1].wins + " points.");
         }
 
         public void Tie()
@@ -111,7 +111,7 @@ namespace RPSLS
             Console.WriteLine("\n" + players[0].name + " chose " + players[0].currentGesture.name + " and " + players[1].name + " chose " + players[1].currentGesture.name + ".");
             Console.WriteLine(roundWinningPlayer.name + " wins round " + currentRound);
             roundWinningPlayer.wins++;
-            rounds++;
+            currentRound++;
             Continue("\nPress enter to continue to next round", true);
         }
     }   
