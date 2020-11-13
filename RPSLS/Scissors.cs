@@ -17,6 +17,8 @@ namespace RPSLS
             this.strengths.Add("Paper");
             this.strengths.Add("Lizard");
             this.name = "Scissors";
+            this.symbolLeft = "8<";
+            this.symbolRight = ">8";
         }
     }
 }

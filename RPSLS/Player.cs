@@ -13,5 +13,8 @@ namespace RPSLS
         public string name;
         public Gestures currentGesture;
         public List<Gestures> gestures;
+
+        public abstract Gestures GetGesture();
+        
     }
 }

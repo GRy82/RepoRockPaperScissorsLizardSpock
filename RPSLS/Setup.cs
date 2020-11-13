@@ -29,9 +29,11 @@ namespace RPSLS
                     multiPlayer = true;
                 }
 
-                List<string> names = EnterNames(optionSelected);
+                NameHumans namingFunctions = new NameHumans();
+                List<string> names = namingFunctions.EnterNames(optionSelected);
 
                 Battle battle = LoadObjects(multiPlayer, rounds, names);
+                Console.Clear();
                 battle.Run();
             }
         }
@@ -53,45 +55,6 @@ namespace RPSLS
             } while (ValidateRounds(rounds) == false);
 
             return Convert.ToInt32(rounds);
-        }
-
-        public static List<string> EnterNames(int numberOfPlayers)
-        {
-            //collect names of players, according  to number of human players participating.
-            List<string> names = new List<string> { };
-            for (int i = 1; i <= numberOfPlayers; i++)
-            {
-                string proposedName = null;
-                bool validName = false;
-                while (!validName)
-                {
-                    Console.WriteLine("Player" + i + ", please enter your name.");
-                    proposedName = Console.ReadLine();
-                    validName = ValidateName(proposedName);
-                }
-                names.Add(proposedName);
-            }
-
-            return names;
-        }
-
-        public static bool ValidateName(string proposedName)
-        {
-            if (proposedName.Length > 20)
-            { //Check length
-                Console.WriteLine("Your name must be 20 characters or less");
-                return false;
-            }
-            //check for unaccepted characters.
-            for (int i = 0; i < proposedName.Length; i++)
-            {
-                if (!(proposedName[i] >= 97 && proposedName[i] <= 122) && !(proposedName[i] >= 65 && proposedName[i] <= 90))
-                {
-                    Console.WriteLine("Only letter characters accepted.");
-                    return false;
-                }
-            }
-            return true;
         }
 
         public static bool ValidateRounds(string rounds)

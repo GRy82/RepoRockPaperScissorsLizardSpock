@@ -16,7 +16,8 @@ namespace RPSLS
             this.name = "Computer";
         }
 
-        public Gestures RandomizeGesture()
+
+        public override Gestures GetGesture()
         {
             Random rand = new Random();
             int randomInteger = rand.Next(5);
@@ -27,6 +28,7 @@ namespace RPSLS
                     currentGesture = gesture;
                 }
             }
+
             return currentGesture;
         }
     }

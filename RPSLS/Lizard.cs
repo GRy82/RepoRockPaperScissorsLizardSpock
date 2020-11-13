@@ -17,6 +17,8 @@ namespace RPSLS
             this.strengths.Add("Paper");
             this.strengths.Add("Spock");
             this.name = "Lizard";
+            this.symbolLeft = "---,==,0=-";
+            this.symbolRight = "-=0,==,---";
         }
     }
 }

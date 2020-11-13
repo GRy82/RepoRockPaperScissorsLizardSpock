@@ -17,6 +17,8 @@ namespace RPSLS
             this.strengths.Add("Spock");
             this.strengths.Add("Rock");
             this.name = "Paper";
+            this.symbolLeft = "[]";
+            this.symbolRight = this.symbolLeft;
         }
     }
 }

@@ -16,6 +16,7 @@ namespace RPSLS
         int winningNumber;
         int currentRound;
         bool multi;
+        VisualSimulation visSim;
 
         List<string> gestureNames = new List<string> { };
 
@@ -27,6 +28,7 @@ namespace RPSLS
             this.winningNumber = Convert.ToInt32(rounds / 2) + 1;
             this.multi = multi;
             this.currentRound = 1;
+            this.visSim = new VisualSimulation();
             foreach (Gestures gesture in gestures)
             {
                 gestureNames.Add(gesture.name);
@@ -38,17 +40,9 @@ namespace RPSLS
             do
             {
                 DisplayScore();
-                var p1 = (Human)players[0];
-                Gestures gesture1 = p1.ChooseGesture();
-                Gestures gesture2;
-                if (multi == true){  
-                    var p2 = (Human)players[1];
-                    gesture2 = p2.ChooseGesture();
-                }
-                else {
-                    var p2 = (Computer)players[1];
-                    gesture2 = p2.RandomizeGesture();
-                }
+                Gestures gesture1 = players[0].GetGesture();
+                Gestures gesture2 = players[1].GetGesture();
+                
                 if (gesture1 == gesture2) {
                     Tie();
                 }
@@ -95,13 +89,14 @@ namespace RPSLS
         }
         public void DisplayScore()
         {
-            Console.WriteLine("\nIt is round " + currentRound + " of " + rounds + " rounds." );
-            Console.WriteLine(players[0].name + " has " + players[0].wins + " points.  " + players[1].name + " has " + players[1].wins + " points.");
+            Console.WriteLine("\nRound:" + currentRound + "/" + rounds + "\n");
+            Console.WriteLine(players[0].name + ": " + players[0].wins + " points.  " + players[1].name + ": " + players[1].wins + " points.");
         }
 
-        public void Tie()
+        public void Tie()   
         {
             Console.WriteLine("\n" + players[0].name + " chose " + players[0].currentGesture.name + " and " + players[1].name + " chose " + players[1].currentGesture.name + ".");
+            visSim.AsciiDepiction(players[0].currentGesture, players[1].currentGesture);
             Console.WriteLine("The result of this round is a tie, and will be repeated");
             Continue("\nPress enter to continue to next round", true);
         }
@@ -109,6 +104,7 @@ namespace RPSLS
         public void RoundWinner(Player roundWinningPlayer)
         {
             Console.WriteLine("\n" + players[0].name + " chose " + players[0].currentGesture.name + " and " + players[1].name + " chose " + players[1].currentGesture.name + ".");
+            visSim.AsciiDepiction(players[0].currentGesture, players[1].currentGesture);
             Console.WriteLine(roundWinningPlayer.name + " wins round " + currentRound);
             roundWinningPlayer.wins++;
             currentRound++;

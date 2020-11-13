@@ -49,6 +49,7 @@
     <Compile Include="Gestures.cs" />
     <Compile Include="Human.cs" />
     <Compile Include="Lizard.cs" />
+    <Compile Include="NameHumans.cs" />
     <Compile Include="Paper.cs" />
     <Compile Include="Player.cs" />
     <Compile Include="Program.cs" />
@@ -57,6 +58,7 @@
     <Compile Include="Scissors.cs" />
     <Compile Include="Setup.cs" />
     <Compile Include="Spock.cs" />
+    <Compile Include="VisualSimulation.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />

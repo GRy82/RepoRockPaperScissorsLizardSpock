@@ -17,6 +17,8 @@ namespace RPSLS
             this.strengths.Add("Scissors");
             this.strengths.Add("Rock");
             this.name = "Spock";
+            this.symbolLeft = "   ___\n  (>.<)  \\\\//\n   | |  \\(__)\n /|   |\\  /\n/ |   | \\/";
+            this.symbolRight = "       ___\n\\\\//  (>.<)\n(__)/  | |\n  \\  /|   |\\\n   \\/ |   | \\";
         }
     }
 }

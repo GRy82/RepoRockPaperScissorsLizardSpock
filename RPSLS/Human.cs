@@ -27,7 +27,7 @@ namespace RPSLS
             this.gestureChoices = new ConsoleOptionsInterface(gestureNames, false);
         }
 
-        public Gestures ChooseGesture()
+        public override Gestures GetGesture()
         {
             Console.WriteLine("\nIt is " + name + "'s turn to pick a gesture.");
             int option = gestureChoices.Launch();
