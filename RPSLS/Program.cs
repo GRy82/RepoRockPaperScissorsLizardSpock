@@ -14,7 +14,6 @@ namespace RPSLS
             Setup setup = new Setup();
             setup.Launch();
         }
-
     }
 }
 
