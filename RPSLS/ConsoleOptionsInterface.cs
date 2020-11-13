@@ -14,12 +14,14 @@ namespace ProblemSolving1
         int counter;
         string inputString;
         bool includeExitOption;
+        bool stringProtected;
 
-        public ConsoleOptionsInterface(List<string> optionsMenu, bool includeExitOption)
+        public ConsoleOptionsInterface(List<string> optionsMenu, bool includeExitOption, bool stringProtected)
         {
             this.optionsMenu = optionsMenu;
             this.includeExitOption = includeExitOption;
             this.printedOptions = optionsMenu.Count;
+            this.stringProtected = stringProtected;
             //if Exit option to be included, option count will be one less.
             if (this.includeExitOption) {
                 this.optionsCount = this.printedOptions + 1;
@@ -36,8 +38,13 @@ namespace ProblemSolving1
             bool valid = true;
             do
             {
-                inputString = Console.ReadLine();
-                valid = CheckValidity();
+                if (!stringProtected) {
+                    inputString = Console.ReadLine();
+                }
+                else {
+                    inputString = ProtectedTyping();
+                }
+                    valid = CheckValidity();
             } while (!valid);
 
             return int.Parse(inputString);
@@ -108,6 +115,32 @@ namespace ProblemSolving1
             }
 
             return newString;
+        }
+        //-------------------------------------------------------------------------------------
+        string ProtectedTyping()
+        {
+            //https://stackoverflow.com/questions/3404421/password-masking-console-application
+            ConsoleKey keyPressed;
+            string optionInput = "";
+            do
+            {
+                var keyIntercepted = Console.ReadKey(intercept: true);
+                keyPressed = keyIntercepted.Key;
+
+                if (keyPressed == ConsoleKey.Backspace && optionInput.Length > 0)
+                {
+                    Console.Write("\b \b");
+                    int lastIndex = optionInput.Length - 1;
+                    optionInput.Remove(lastIndex, 1);
+                }
+                else if (!char.IsControl(keyIntercepted.KeyChar))
+                {
+                    Console.Write("*");
+                    optionInput += keyIntercepted.KeyChar;//intercept is a boolean that selects for non-display.
+                }
+            } while (keyPressed != ConsoleKey.Enter);
+
+            return optionInput;
         }
         //-------------------------------------------------------------------------------------
     }

@@ -24,7 +24,7 @@ namespace RPSLS
                 this.gestureNames.Add(gesture.name);
             }
 
-            this.gestureChoices = new ConsoleOptionsInterface(gestureNames, false);
+            this.gestureChoices = new ConsoleOptionsInterface(gestureNames, false, true);
         }
 
         public override Gestures GetGesture()

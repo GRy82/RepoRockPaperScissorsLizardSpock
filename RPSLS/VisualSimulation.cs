@@ -24,7 +24,7 @@ namespace RPSLS
                     displayLines = RightSpock(leftGesture.symbolLeft, rightGesture.symbolRight);
                 }
                 else {
-                    
+                    displayLines = LeftSpock(leftGesture.symbolLeft, rightGesture.symbolRight);
                 }
             }
             Console.WriteLine("");
@@ -44,7 +44,9 @@ namespace RPSLS
                 while (counter < leftGestureSymbol.Length && leftGestureSymbol[counter] != '\n')
                 {
                     displayLines[i] += leftGestureSymbol[counter];
+                    counter++;
                 }
+                counter++;
             }
             displayLines[2] += "  vs.  " + rightGestureSymbol;
 

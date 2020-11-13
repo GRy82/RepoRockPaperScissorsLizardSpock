@@ -40,7 +40,7 @@ namespace RPSLS
 
         public static int MenuServer(List<string> options, bool exit)
         {
-            ConsoleOptionsInterface optionsMenu = new ConsoleOptionsInterface(options, exit);
+            ConsoleOptionsInterface optionsMenu = new ConsoleOptionsInterface(options, exit, false);
             int optionSelected = optionsMenu.Launch();
             return optionSelected;
         }
