@@ -62,7 +62,7 @@ namespace RPSLS
             foreach (char character in rounds)
             {
                 int asciiChar = Convert.ToInt32(character);
-                if (asciiChar < 48 || asciiChar > 57)
+                if (asciiChar < 48 || asciiChar > 57 || character == '\0')
                 {
                     return false;
                 }

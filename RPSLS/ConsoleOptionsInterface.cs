@@ -22,18 +22,24 @@ namespace ProblemSolving1
             this.includeExitOption = includeExitOption;
             this.printedOptions = optionsMenu.Count;
             this.stringProtected = stringProtected;
-            //if Exit option to be included, option count will be one less.
-            if (this.includeExitOption) {
-                this.optionsCount = this.printedOptions + 1;
-            }
-            else {
-                this.optionsCount = this.printedOptions;
-            }
         }
         //-------------------------------------------------------------------------------------
         //-------------------------------------------------------------------------------------
+        public void SetExitOption()
+        {
+            if (this.includeExitOption)
+            {
+                this.optionsCount = this.printedOptions + 1;
+            }
+            else
+            {
+                this.optionsCount = this.printedOptions;
+            }
+        }
+        
         public int Launch()
         {
+            SetExitOption();
             DisplayOptions(); //Display options in form "1. option"
             bool valid = true;
             do
@@ -44,7 +50,10 @@ namespace ProblemSolving1
                 else {
                     inputString = ProtectedTyping();
                 }
-                    valid = CheckValidity();
+                valid = CheckValidity();
+                if (!valid) {
+                    Console.WriteLine("\nInvalid input. Enter number of option or number of option with a period.\n");
+                }
             } while (!valid);
 
             return int.Parse(inputString);
@@ -117,8 +126,10 @@ namespace ProblemSolving1
             return newString;
         }
         //-------------------------------------------------------------------------------------
+
         string ProtectedTyping()
         {
+            //Help from:
             //https://stackoverflow.com/questions/3404421/password-masking-console-application
             ConsoleKey keyPressed;
             string optionInput = "";
@@ -131,7 +142,12 @@ namespace ProblemSolving1
                 {
                     Console.Write("\b \b");
                     int lastIndex = optionInput.Length - 1;
-                    optionInput.Remove(lastIndex, 1);
+                    if (optionInput.Length == 1) {
+                        optionInput = "";
+                    }
+                    else {
+                        optionInput.Remove(lastIndex, 1);
+                    }
                 }
                 else if (!char.IsControl(keyIntercepted.KeyChar))
                 {
@@ -139,6 +155,8 @@ namespace ProblemSolving1
                     optionInput += keyIntercepted.KeyChar;//intercept is a boolean that selects for non-display.
                 }
             } while (keyPressed != ConsoleKey.Enter);
+
+            Console.WriteLine();//skip a line
 
             return optionInput;
         }

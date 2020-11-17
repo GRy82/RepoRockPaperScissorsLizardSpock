@@ -6,6 +6,7 @@ using System.Threading.Tasks;
 
 namespace RPSLS
 {
+    //Virtually an entire class dedicated to Spock creation!
     class VisualSimulation
     {
         public void AsciiDepiction(Gestures leftGesture, Gestures rightGesture)
@@ -34,6 +35,7 @@ namespace RPSLS
             Console.WriteLine("");
         }
 
+        //For when Spock is on the left vs. a smaller ascii figure.
         public List<string> LeftSpock(string leftGestureSymbol, string rightGestureSymbol)
         {
             List<string> displayLines = new List<string> { };
@@ -52,7 +54,8 @@ namespace RPSLS
 
             return displayLines;
         }
-        
+
+        //For when Spock is on the right vs. a smaller ascii figure.
         public List<string> RightSpock(string leftGestureSymbol, string rightGestureSymbol)
         {
             List<string> displayLines = new List<string> { };
@@ -87,7 +90,7 @@ namespace RPSLS
             return displayLines;          
         }
 
-
+        //For when there are two Spocks, and this was a bit more complicated.
         public List<string> TwoSpock(string leftGestureSymbol, string rightGestureSymbol)
         {
             List<string> displayLines = new List<string> { };
@@ -95,7 +98,7 @@ namespace RPSLS
             int counterLeft = 0;
             int counterRight = 0;
             int leftLineLength = 0;
-            int maxLength = 27;
+            int maxLength = 27; //the largest sum of any two sring lines of a right spock and left spock.
             int vsSpace = 7; //The amount of space that a "  vs.  " takes up between two spocks.
             int spacesNeeded = 0;
             //For each line of the spocks printed, contruct a string to be part of a returned List<string>

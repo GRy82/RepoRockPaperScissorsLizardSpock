@@ -29,6 +29,10 @@ namespace RPSLS
             this.multi = multi;
             this.currentRound = 1;
             this.visSim = new VisualSimulation();
+        }
+
+        public void LoadGesturesNames()
+        {
             foreach (Gestures gesture in gestures)
             {
                 gestureNames.Add(gesture.name);
@@ -37,6 +41,7 @@ namespace RPSLS
 
         public void Run()
         {
+            LoadGesturesNames();
             do
             {
                 DisplayScore();

@@ -30,9 +30,9 @@ namespace RPSLS
 
         public bool ValidateName(string proposedName)
         {
-            if (proposedName.Length > 20)
+            if (proposedName.Length > 20 || proposedName.Length < 1)
             { //Check length
-                Console.WriteLine("Your name must be 20 characters or less");
+                Console.WriteLine("\nYour name must be between 1 and 20 characters");
                 return false;
             }
             //check for unaccepted characters.
